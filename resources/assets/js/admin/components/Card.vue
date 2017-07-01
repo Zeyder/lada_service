@@ -1,7 +1,7 @@
 <template lang="jade">
 .card
     .card__header
-        span.card__close(v-if="modal", @click="closeModal(modalName)") &times;
+        span.card__close(v-if="modal", @click="toggleModal(modalName)") &times;
         .col-lg-6.col-md-6.col-xs-6: .row
             .form__group
                 label.label ID
@@ -23,29 +23,41 @@
                 span.card__text.card__time-start(v-text="data.date_start")
             .form__group
                 label.label Выдача
-                span.card__text.card__time-parking(v-if="info.date_end != ''", v-text="data.date_end")
-                span.card__text.card__status(v-else)
-                    i.fa.fa-warning(v-if="getStatus(info) != 'Выдано'")
-                    i.fa.fa-check-square(v-if="getStatus(info) == 'Выдано'")
-                    | {{getStatus(info)}}
+                span.card__text.card__time-parking(v-if="data.date_end != ''", v-text="data.date_end")
+                span.card__text.card__status.text_danger(v-else) Не выдано
+
         .col-lg-6.col-md-6.col-xs-6: .row
-            .form__group(v-show="info.date_parking != ''")
+            .form__group(v-show="data.date_parking != ''")
                 label.label Перевод на стоянку
                 span.card__text.card__time-parking(v-text="data.date_parking")
         .col-lg-12.col-md-12.col-xs-12: .row
             button.btn.btn_default.card__edit(@click="toggleModal('editFine')")
                 i.fa.fa-edit
                 | Редактировать    
-            button.btn.btn_danger.card__delete(@click="goToArchive")
+            button.btn.btn_danger.card__delete(@click="goToArchive", v-if="data.archive == 0")
                 i.fa.fa-trash
                 | Архивировать
 </template>
 <script>
 import Card from '../mixins/Card';
 import {mapMutations} from 'vuex';
+var fields = {
+    id: '',
+    model: '',
+    token_number: '',
+    state_number: '',
+    date_start: '',
+    date_parking: '',
+    date_end: '',
+    time_start: '',
+    time_parking: '',
+    time_end: '',
+    archive: 0,
+    id_user: window.__INITIAL_STATE__.user.id
+}
 export default {
     name: 'card',
-    props: ['info', 'position', 'modal', 'modalName'],
+    props: ['info', 'modal', 'modalName'],
     mixins: [Card],
     data(){
         return {
@@ -53,8 +65,15 @@ export default {
         }
     },
     watch: {
-        'info'(val, oldVal){
-            this.data = val;
+        'info'(val, oldVal){    
+            this.data.id = val.id;
+            this.data.model = val.model;
+            this.data.token_number = val.token_number;
+            this.data.state_number = val.state_number;
+            this.data.date_start = val.date_start;
+            this.data.date_parking = val.date_parking;
+            this.data.date_end = val.date_end;
+            this.data.archive = val.archive;
         }
     },
     computed: {
@@ -63,9 +82,7 @@ export default {
         }
     },
     methods: {
-        ...mapMutations([
-            'toggleModal'
-        ]),
+        ...mapMutations(['toggleModal']),
         goToArchive(){
             if (confirm('Вы действительно хотите сделать запись архивной?')){
                 this.data.archive = 1;
@@ -80,6 +97,19 @@ export default {
                     }
                 });
             }
+        },
+        resetData(){
+            this.data.id =  '';
+            this.data.model = '';
+            this.data.token_number = '';
+            this.data.state_number = '';
+            this.data.date_start = '';
+            this.data.date_parking = '';
+            this.data.date_end = '';
+            this.data.time_start = '';
+            this.data.time_parking = '';
+            this.data.time_end = '';
+            this.data.archive = 0;
         }
     }
 }

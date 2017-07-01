@@ -87,5 +87,9 @@ class RegisterController extends Controller
         //     'code' => 200,
         //     'message' => 'Ok'
         // ]);
+    } 
+    
+    public function destroy($id){
+        return $id;
     }
 }

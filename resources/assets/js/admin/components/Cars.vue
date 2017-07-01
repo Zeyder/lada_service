@@ -6,14 +6,19 @@ main
             footer(v-if="!more"): button.btn.btn_primary.btn_block(@click="getArchiveCards") Показать архивные
         template(v-else)
             .container: button.btn.btn_primary.btn_block(@click="getArchiveCards") Показать архивные
+    info-block
+        span.count-fines Количество машин: {{countFines}}
+        span.count-fines Количество архивных: {{countArchives}}
+        span.count-fines Всего: {{totalCount}}
 </template>
 <script>
 const platform = window.__INITIAL_STATE__.platform;
 const List = platform == 'mobile' ? require('./ListCards.vue') : require('./Table.vue');
+import InfoBlock from './InfoBlock';
 import {mapGetters} from 'vuex';
 export default {
     name: 'Cars',
-    components: {List},
+    components: {List, InfoBlock},
     data(){
         return {
             platform,
@@ -27,8 +32,14 @@ export default {
         }),
         //Количество архивных записей в базе данных
         countArchives(){
-            return window.__INITIAL_STATE__.state.count_archives;
+            return this.more ? this.$store.state.arсhiveCards.length : window.__INITIAL_STATE__.state.count_archives;
         },
+        countFines(){
+            return this.$store.state.cards.length;
+        },
+        totalCount(){
+            return this.countFines + this.countArchives;
+        }
     },
     methods: {
         getArchiveCards(){
@@ -40,4 +51,9 @@ export default {
     }
 }
 </script>
-
+<style lang="stylus">
+main
+    padding-bottom 50px
+.count-fines
+    padding 0 10px
+</style>

@@ -172,15 +172,32 @@ export default {
             }
         },
         cancelModal(){
-            if (confirm('Вы действительно хотите отменить действия?')){
+            let changed = false;
+            for(let key in this.data){
+                changed = changed || (this.data[key] != this.form.fields[key]);
+            }
+            if (changed && confirm('Вы действительно хотите отменить действия?')){
                 this.close();
-                this.resetForm();
+                this.$parent.closeWrapper();
+            }
+            if (!changed){
+                this.close();
                 this.$parent.closeWrapper();
             }
         },
         resetForm(){
-            this.form.fields = JSON.parse(JSON.stringify(fields));
-            this.$store.commit('setEditableCard', null);
+            this.form.fields.id =  '';
+            this.form.fields.model = '';
+            this.form.fields.token_number = '';
+            this.form.fields.state_number = '';
+            this.form.fields.date_start = '';
+            this.form.fields.date_parking = '';
+            this.form.fields.date_end = '';
+            this.form.fields.time_start = '';
+            this.form.fields.time_parking = '';
+            this.form.fields.time_end = '';
+            this.form.fields.archive = 0;
+            
         }
     }
 }

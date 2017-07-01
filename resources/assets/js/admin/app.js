@@ -1,8 +1,10 @@
 import $ from 'jquery';
 window.$ = $;
 window.jQuery = $;
+window.moment = require('moment');
 require('../../vendor/datetimepicker/jquery.datetimepicker.full.js');
 require('../../vendor/datetimepicker/jquery.datetimepicker.min.css');
+require('../../vendor/stickytableheader');
 $.datetimepicker.setLocale('ru');
 import Vue from 'vue';
 import store from './store';

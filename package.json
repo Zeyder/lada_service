@@ -28,6 +28,7 @@
     "fa-stylus": "^0.3.2",
     "jquery-datetimepicker": "^2.5.4",
     "jquery-mousewheel": "^3.1.13",
+    "moment": "^2.18.1",
     "stylus-normalize": "^3.0.3",
     "vue": "^2.3.3",
     "vuex": "^2.3.1"

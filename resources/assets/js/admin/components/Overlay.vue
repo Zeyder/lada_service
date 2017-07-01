@@ -32,6 +32,7 @@ export default {
                 this.initEventKeyup();
             }else{
                 this.destroyEventKeyup();
+                this.closeWrapper();
             }
         }
     },
@@ -51,13 +52,11 @@ export default {
         initEventKeyup(){
             if (parseInt(window.innerWidth) > 992){
                 window.addEventListener('keyup', this.keyFunc);
-                document.querySelector('html').classList.add('no-scroll');
             }
         },
         destroyEventKeyup(){
             if (parseInt(window.innerWidth) > 992){
                 window.removeEventListener('keyup', this.keyFunc, false);
-                document.querySelector('html').classList.remove('no-scroll');
             }
         },
         closeWrapper(){

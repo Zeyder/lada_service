@@ -18,11 +18,12 @@ Route::get('/administrator/logout', 'AdminController@logout')->name('logout');
 Route::post('/administrator/login', 'AdminController@login')->name('login');
 
 Route::group(['prefix' => 'api/v1'], function(){
-    Route::resource('/fines', 'FineController', ['only' => ['store', 'update', 'index']]);
+    Route::resource('/users', 'Auth\UserController');
+    Route::resource('/fines', 'FineController', ['only' => ['store', 'update', 'destroy', 'index']]);
+    Route::resource('/token_number', 'TokenNumberController');
     Route::get('/archives', 'FineController@archives');
     Route::get('/fines/search/{state_number}', 'FineController@search');
     Route::post('/users', 'Auth\RegisterController@register');
-    Route::resource('/token_number', 'TokenNumberController');
 });
 
 

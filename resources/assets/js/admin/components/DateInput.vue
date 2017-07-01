@@ -1,5 +1,7 @@
 <template lang="jade">
-input.input(type="text", v-model="localDate", ref="inputDate")
+.group-input
+    input.input(type="text", v-model="localDate", ref="inputDate")
+    .group-input__icon: i.fa.fa-calendar
 </template>
 <script>
 export default {
@@ -15,25 +17,36 @@ export default {
             this.localDate = val;
         },
         'localDate'(val, oldVal){
-            
-            $(this.$el).val(val);
+            $(this.$refs.inputDate).val(val);
             this.$emit('date-change', val);
         }
     },
     methods: {
         updateDate(){
-            this.localDate = $(this.$el).val();
+            this.localDate = $(this.$refs.inputDate).val();
             
             this.$emit('date-change', this.localDate);
         }
     },
     mounted(){
-        $(this.$el).datetimepicker({
+        $(this.$refs.inputDate).datetimepicker({
         timepicker: false,
-        mask: '31.12.2099',
         format: 'd.m.Y',
             onSelectDate: this.updateDate
         });
     }
 }
 </script>
+<style lang="stylus" scoped>
+@import "../../../styl/admin/variables"
+.group-input
+    width 100%
+    position relative
+    &__icon
+        position absolute
+        color #B9BAA3
+        margin-top -1px
+        right 8px
+        top 50%
+        transform translateY(-50%)
+</style>

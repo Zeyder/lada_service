@@ -24,7 +24,7 @@ table.table
         td(v-text="card.date_parking")
         td(v-text="card.date_end == '' ? 'Не выдано' : card.date_end", :class="{'text_danger': card.date_end == ''}")
         td(v-if="user.role > 1", v-text="card.responsible")
-    tfoot: tr(v-for="(card, $index) in archives", :key="card.id")
+    tfoot: tr(v-for="(card, $index) in archives", :key="card.id", @click="show(card)")
         td(v-text="card.id")
         td(:class="getClassStatus(card)")
             p.status
@@ -49,6 +49,12 @@ export default {
         user(){
             return this.$store.state.user;
         }
+    },
+    mounted(){
+        $(this.$el).stickyTableHeaders({
+            fixedOffset: $('.top-bar'),
+            cacheHeaderHeight: true
+        });
     }
 }
 </script>

@@ -74,7 +74,7 @@ class FineController extends Controller
     }
 
     public function search($state_number){
-        $dbh = Fine::where(['state_number' => $state_number, 'archive' => 0]);
+        $dbh = Fine::where([['state_number', 'LIKE', '%'.strtolower($state_number).'%'], ['archive', '=', 0]]);
         if ($dbh->count() > 0){
             return response()->json($dbh->first(), 200);
         }else{

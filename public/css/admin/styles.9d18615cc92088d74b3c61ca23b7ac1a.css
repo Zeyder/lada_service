@@ -1162,7 +1162,7 @@ th {
 .fa-check-square:before {
   content: "\f14a";
 }
-.fa-calendar:before {
+.fa-calendar-plus-o:before {
   content: "\f271";
 }
 .fa-calendar-check-o:before {
@@ -1359,7 +1359,7 @@ hr.divinder {
   line-height: 33px;
   font-size: 14px;
   font-weight: 300;
-  border: 1px solid transparent;
+  border: 0;
   border-radius: 2px;
   display: inline-block;
   outline: none;
@@ -1373,18 +1373,10 @@ hr.divinder {
   background-color: #b9baa3;
   color: #fff;
 }
-.btn_default:hover {
-  background-color: #a2a485;
-}
 .btn_default.btn_transparent {
   border: 1px solid #b9baa3;
   color: #b9baa3;
   background-color: transparent;
-}
-.btn_default.btn_transparent:hover {
-  background-color: #aaab8f;
-  color: #fff;
-  border-color: transparent;
 }
 .btn_white {
   background-color: #fff;
@@ -1402,7 +1394,4 @@ hr.divinder {
 .btn_danger {
   background-color: #990d0d;
   color: #fff;
-}
-.btn_danger:hover {
-  background-color: #820b0b;
 }
