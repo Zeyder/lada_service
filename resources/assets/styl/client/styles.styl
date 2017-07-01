@@ -1,0 +1,237 @@
+@import "./variables.styl"
+@import "~stylus-normalize/normalize.styl"
+@import "../../vendor/helveticaNeue/font.styl"
+@import "../../vendor/bootstrapGrid/bootstrap.styl"
+@import "./utilities.styl"
+@import "./owl.carousel.styl"
+
+
+*
+*:after
+&:before
+    box-sizing border-box
+
+html
+    font-size 16px
+    @media(max-width 768px)
+        font-size 12px
+    @media(max-width 352px)
+        font-size 10px
+
+body
+    @extend .weight-light
+    font-size 1rem
+    line-height 1.45
+    color black
+
+h1
+h2
+h3
+h4
+h5
+h6
+b
+strong
+    @extend .weight-bold
+
+h1
+h2
+h3
+h4
+h5
+h6
+p
+    margin 0 0 5px
+
+address
+    font-style normal
+
+.icon-marker
+    width 12px
+    height 16px
+    display inline-block
+    vertical-align middle
+    margin-top -2px
+    background transparent url('../../img/map-marker_4_.svg') no-repeat center
+.icon-send
+    width 16px
+    height 16px
+    display inline-block
+    vertical-align middle
+    margin-top -2px
+    background transparent url('../../img/Shape.svg') no-repeat center
+
+.carousel-item
+    position relative
+
+.man 
+    position absolute
+    @media(max-width 770px)
+        display none
+    &-eugene
+        top 53px
+        right 50px
+    &-bair
+        top 53px
+        right 50px
+    &-alexander
+        top 82px
+        right 50px
+
+.message
+    padding 25px
+    background-color white
+    border-radius 2px
+    box-shadow 0 0 10px rgba(0,0,0, .1)
+    position relative
+    margin-bottom 15px
+    &:after
+        content ""
+        width 0
+        height 0
+        display block
+        position absolute
+        right 0
+        bottom -20px
+        border 20px solid transparent
+        border-right 20px solid white
+
+
+.input
+    width 100%
+    height 45px
+    padding-left 15px
+    border 1px solid rgba(0,0,0, .1)
+    outline none
+    transition all 250ms ease
+    -webkit-appearance none
+    &:focus
+        border-color rgba(0,0,0, .2)
+
+.btn
+    display inline-block
+    outline none
+    cursor pointer
+    border 0
+    text-decoration none
+    padding 5px 15px
+    border-radius 2px
+    height 45px
+    transition all 250ms ease
+    &-danger
+        background-color red
+        color white
+        &:hover
+            opacity .9
+a.btn
+    line-height 35px
+
+label.label
+    display block
+    margin-bottom 10px
+
+.form
+    @extend .inline-block
+    border 4px solid red
+    padding 25px
+    margin-bottom 25px
+    position relative
+    &-state-success
+    &-state-fail
+    &-state-loading
+        background-color white
+        background-position 96% 10%
+        background-repeat no-repeat
+        position absolute
+        padding @padding
+        width 100%
+        height 100%
+        top 0
+        left 0
+    &-state-success
+        background-image url('../../img/done_circle.svg');
+        padding-top 15%
+        @media(max-width 770px)
+            padding-top 25px
+    &-state-fail
+        background-image url('../../img/not_found_circle.svg')
+        padding-top 25%
+        @media(max-width 770px)
+            padding-top 25px
+    &-preloader
+        width 90px
+        height 90px
+        display block
+        position absolute
+        background transparent url('../../img/loader_spinner.svg') no-repeat center
+        border-radius 50%
+        top 50%
+        left 50%
+        margin-left (@width / -2)
+        margin-top (@height / -2)
+        animation rotation .7s linear infinite
+    .form-group
+        margin-bottom 15px
+
+.sections
+    padding-top 40px
+    padding-bottom 40px
+
+.intro
+    margin-top 55px
+    margin-bottom 55px
+    &-title
+        @extend .text-size-lg
+        line-height @font-size
+        margin 0
+    &-text
+        @extend .text-size-h2
+        line-height @font-size
+        margin 0
+
+#section_1
+    background #fff url('../../img/background_image.png') no-repeat center
+    background-size cover
+
+.contacts
+    font-size 36px
+    line-height 36px
+    text-decoration none
+
+.logo
+    @media(max-width 330px)
+        max-width 70%
+
+#section_2
+    padding-top 40px
+    padding-bottom @padding-top
+    background-color blue
+    color white
+    .red-circle
+        width 130px
+        height 130px
+        background-color red
+        color white
+        border-radius 50%
+        position absolute
+        right 20%
+        top -145px
+        padding-top 16px
+        line-height 30px
+        @media(max-width 770px)
+            top -135px
+            right auto
+            left 50%
+            transform translateX(-50%)
+        span
+            display block
+#section_4
+    background-color silver
+    padding-bottom 0
+
+#footer
+    background-color black
+
+@keyframes rotation
+    to
+        transform rotate(360deg)

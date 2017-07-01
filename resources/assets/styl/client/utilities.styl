@@ -1,0 +1,95 @@
+@import "./variables.styl"
+
+.text
+    &-color
+        &-white
+            color white
+        &-red
+            color red
+        &-blue
+            color blue
+        &-silver
+            color silver
+        &-black
+            color black
+        &-lighter
+            color lighter
+        &-gray
+            color gray
+    &-center
+        text-align center
+    &-left
+        text-align left
+        @media(max-width 992px)
+            text-align  center
+    &-right
+        text-align right
+        @media(max-width 992px)
+            text-align center
+    &-size
+        &-lg
+            font-size 3.75rem
+        &-h1
+            font-size 3rem
+        &-h2
+            font-size 2.25rem
+        &-h3
+            font-size 1.5rem
+        &-h4
+            font-size 1.125rem
+        &-h5
+            font-size 1rem
+        &-h6
+            font-size .75rem
+
+.padding-right-none
+    padding-right 0
+
+.img-responsve
+    width auto
+    max-width 100%
+    display inline-block
+
+.flex
+    display flex
+
+.inline-block
+    float none
+    display inline-block
+
+.align
+    &-top
+        vertical-align top
+    &-middle
+        vertical-align middle
+    &-bottom
+        vertical-align bottom
+
+.form-group
+    margin-bottom 25px
+
+.weight
+    &-normal
+        font-family 'HelveticaNeueCyr-Medium'
+        font-weight 500
+    &-light
+        font-family 'HelveticaNeueCyr-Light'
+        font-weight normal
+    &-bold
+        font-family 'HelveticaNeueCyr-Bold'
+        font-weight normal
+
+
+.opacity
+    &-5
+        opacity .5
+
+.icon
+    margin-top 5px
+    &-margin
+        &-xs
+            margin-right 7px
+        &-md
+            margin-right 10px
+        &-lg
+            margin-right 15px

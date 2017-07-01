@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="4px" viewBox="0 0 64 4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+        <g id="index" transform="translate(-768.000000, -2650.000000)" fill="#0A100D">
+            <g id="feedback" transform="translate(239.000000, 2353.000000)">
+                <g id="slider" transform="translate(369.000000, 297.000000)">
+                    <rect id="Rectangle-6" x="160" y="0" width="64" height="4" rx="2"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

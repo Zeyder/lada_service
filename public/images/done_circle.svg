@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+        <g id="requests_states" transform="translate(-1803.000000, -132.000000)" fill-rule="nonzero" fill="#990D0D">
+            <g id="request_info" transform="translate(1549.000000, 96.000000)">
+                <g id="done_circle" transform="translate(254.000000, 36.000000)">
+                    <path d="M64,128 C28.7093333,128 0,99.2906667 0,64 C0,28.7093333 28.7093333,0 64,0 C99.2906667,0 128,28.7093333 128,64 C128,99.2906667 99.2906667,128 64,128 Z M64,5.33333333 C31.6533333,5.33333333 5.33333333,31.6533333 5.33333333,64 C5.33333333,96.3466667 31.6533333,122.666667 64,122.666667 C96.3466667,122.666667 122.666667,96.3466667 122.666667,64 C122.666667,31.6533333 96.3466667,5.33333333 64,5.33333333 Z" id="Shape"></path>
+                    <polygon id="Shape" points="56.7786667 87.2213333 33.5626667 64 37.3333333 60.2293333 58.3786667 81.2746667 90.1333333 38.9333333 94.4 42.1333333 60.8 86.9333333"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

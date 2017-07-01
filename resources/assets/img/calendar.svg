@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="admin+modal+edit_add" transform="translate(-527.000000, -456.000000)" fill-rule="nonzero" fill="#B9BAA3">
+            <g id="modal_card" transform="translate(-1.000000, 63.000000)">
+                <path d="M538.5,394 C538.775,394 539,394.225 539,394.5 L539,396 L528,396 L528,394.5 C528,394.225 528.225,394 528.5,394 L529,394 L529,393.5 C529,393.225 529.225,393 529.5,393 L530.5,393 C530.775,393 531,393.225 531,393.5 L531,394 L536,394 L536,393.5 C536,393.225 536.225,393 536.5,393 L537.5,393 C537.775,393 538,393.225 538,393.5 L538,394 L538.5,394 Z M528,404.5 L528,397 L539,397 L539,404.5 C539,404.775 538.775,405 538.5,405 L528.5,405 C528.225,405 528,404.775 528,404.5 Z" id="calendar"></path>
+            </g>
+        </g>
+    </g>
+</svg>

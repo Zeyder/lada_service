@@ -1,0 +1,22 @@
+ErrorDocument 404 /404
+
+Options +FollowSymLinks
+IndexIgnore */*
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} !^/(public)
+RewriteRule ^css/(.*)$ public/css/$1 [L]
+RewriteRule ^js/(.*)$ public/js/$1 [L]
+RewriteRule ^img/(.*)$ public/img/$1 [L]
+RewriteRule ^images/(.*)$ public/images/$1 [L]
+#RewriteRule ^uploads/(.*)$ public/uploads/$1 [L]
+RewriteRule ^fonts/(.*)$ public/fonts/$1 [L]
+RewriteRule (.*) /public/$1
+
+RewriteCond %{REQUEST_URI} !^/(storage)
+RewriteRule ^uploads/(.*)$ storage/uploads/$1 [L]
+RewriteRule (.*) /storage/$1
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /public/index.php

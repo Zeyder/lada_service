@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
+        <g id="index" transform="translate(-834.000000, -1063.000000)" fill-rule="nonzero" fill="#FFFFFF">
+            <g id="request" transform="translate(782.000000, 835.000000)">
+                <g id="send-button" transform="translate(36.000000, 214.000000)">
+                    <path d="M16,24.4531583 L21.3337794,24.4531583 L21.3337794,30 L25.5408547,24.7694832 L32,28.3855619 L32,14 L16,24.4531583 Z M22.3989295,27.1950779 L22.3989295,24.1775226 L31.5396839,14.6890894 L22.3989295,27.1950779 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
