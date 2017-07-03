@@ -113,9 +113,13 @@ class FineController extends Controller
         $fine->archive = $obj['archive'];
         if ($obj['date_parking'] != ''){
             $fine->date_parking = $obj['date_parking'];
+        }else{
+            $fine->date_parking = '';
         }
         if ($obj['date_end'] != ''){
             $fine->date_end = $obj['date_end'];
+        }else{
+            $fine->date_end = '';
         }
         $fine->date_start = $obj['date_start'];
         $fine->save();

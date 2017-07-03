@@ -28,13 +28,16 @@ export default {
         }
     },
     watch: {
-        'editableTokenNumber'(val, oldVal){
-            if (val != null){
-                this.form.fields.id = val.id;
-                this.form.fields.number = val.number;
-            }else{
-                this.form.fields.id = '';
-                this.form.fields.number = '';
+        editableTokenNumber: {
+            deep: true,
+            handler(val, oldVal){
+                if (val != null){
+                    this.form.fields.id = val.id;
+                    this.form.fields.number = val.number;
+                }else{
+                    this.form.fields.id = '';
+                    this.form.fields.number = '';
+                }
             }
         }
     },

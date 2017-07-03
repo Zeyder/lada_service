@@ -143,9 +143,16 @@ export default new Vuex.Store({
             }) || state.arсhiveCards.find(item => {
                 return item.id == card.id;
             });
-            if (cardFinded != undefined){
+            if (cardFinded !== undefined){
                 for(let key in cardFinded){
                     cardFinded[key] = card[key];
+                }
+                if (cardFinded.archive == 1){
+                    let isNotArchive = state.cards.findIndex(item => item.id == cardFinded.id);
+                    if (isNotArchive != -1){
+                        state.arсhiveCards.push(cardFinded);
+                        state.cards.splice(isNotArchive, 1);
+                    }
                 }
             }
         },
@@ -162,9 +169,15 @@ export default new Vuex.Store({
         },
         //Запоминаем запись которую будем редактировать
         setEditableCard(state, card){
-            let i = state.cards.indexOf(card); 
+            state.editableCard = null;
+            let i = state.cards.indexOf(card);
             if (i != -1){
                 state.editableCard = state.cards[i];
+            }else{
+                i = state.arсhiveCards.indexOf(card);
+                if (i != -1){
+                    state.editableCard = state.arсhiveCards[i];
+                }
             }
         },
         setEditableTokenNumber(state, token_number){
@@ -248,6 +261,7 @@ export default new Vuex.Store({
             fine['responsible'] = state.user.full_name;
             return axios.put(`/fines/${fine.id}`, fine).then(response => {
                 commit('editCard', fine);
+                //commit('setEditableCard', fine);
                 resolve();
             }).catch(e => {
                 reject(e);

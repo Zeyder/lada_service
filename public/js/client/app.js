@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 262);
+/******/ 	return __webpack_require__(__webpack_require__.s = 277);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10165,13 +10165,13 @@ module.exports = __webpack_require__(16);
 
 /***/ }),
 
-/***/ 155:
+/***/ 156:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _jquery = __webpack_require__(7);
+var _jquery = __webpack_require__(8);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -10179,7 +10179,7 @@ var _vue = __webpack_require__(14);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _SearchForm = __webpack_require__(222);
+var _SearchForm = __webpack_require__(231);
 
 var _SearchForm2 = _interopRequireDefault(_SearchForm);
 
@@ -10188,7 +10188,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 window.$ = _jquery2.default;
 window.jQuery = _jquery2.default;
 
-__webpack_require__(181);
+__webpack_require__(185);
 
 (0, _jquery2.default)(document).ready(function (e) {
     (0, _jquery2.default)('.carousel.owl-carousel').owlCarousel({
@@ -10215,7 +10215,7 @@ new _vue2.default({
 var utils = __webpack_require__(1);
 var bind = __webpack_require__(13);
 var Axios = __webpack_require__(18);
-var defaults = __webpack_require__(6);
+var defaults = __webpack_require__(7);
 
 /**
  * Create an instance of Axios
@@ -10331,91 +10331,13 @@ module.exports = CancelToken;
 
 /***/ }),
 
-/***/ 177:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _axios = __webpack_require__(15);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    name: 'search-form',
-    data: function data() {
-        return {
-            status: 0,
-            state_number: '',
-            obj: {
-                token_number: '',
-                state_number: '',
-                date_start: ''
-            }
-        };
-    },
-
-    methods: {
-        submit: function submit() {
-            var _this = this;
-
-            if (this.token_number != '') {
-                this.status = 1;
-                _axios2.default.get(window.location.origin + '/api/v1/fines/search/' + this.state_number.trim().toUpperCase()).then(function (response) {
-                    _this.obj = response.data;
-                    _this.status = 2;
-                    _this.state_number = '';
-                }).catch(function (e) {
-                    _this.status = 3;
-                    _this.state_number = '';
-                });
-            }
-        }
-    }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/***/ }),
-
 /***/ 18:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__(6);
+var defaults = __webpack_require__(7);
 var utils = __webpack_require__(1);
 var InterceptorManager = __webpack_require__(19);
 var dispatchRequest = __webpack_require__(20);
@@ -10503,6 +10425,87 @@ module.exports = Axios;
 /***/ }),
 
 /***/ 181:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _axios = __webpack_require__(15);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    name: 'search-form',
+    data: function data() {
+        return {
+            status: 0,
+            state_number: '',
+            obj: {
+                token_number: '',
+                state_number: '',
+                date_start: ''
+            }
+        };
+    },
+
+    methods: {
+        submit: function submit() {
+            var _this = this;
+
+            if (this.state_number != '') {
+                this.status = 1;
+                _axios2.default.get(window.location.origin + '/api/v1/fines/search/' + this.state_number.trim().toUpperCase()).then(function (response) {
+                    _this.obj = response.data;
+                    _this.obj.state_number = _this.state_number;
+                    _this.status = 2;
+                    _this.state_number = '';
+                }).catch(function (e) {
+                    _this.status = 3;
+                    _this.state_number = '';
+                });
+            }
+        }
+    }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+
+/***/ 185:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11238,7 +11241,7 @@ module.exports = function normalizeComponent (
 var utils = __webpack_require__(1);
 var transformData = __webpack_require__(23);
 var isCancel = __webpack_require__(11);
-var defaults = __webpack_require__(6);
+var defaults = __webpack_require__(7);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -11376,14 +11379,42 @@ module.exports = function settle(resolve, reject, response) {
 
 /***/ }),
 
-/***/ 222:
+/***/ 23:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(1);
+
+/**
+ * Transform the data for a request or a response
+ *
+ * @param {Object|String} data The data to be transformed
+ * @param {Array} headers The headers for the request or response
+ * @param {Array|Function} fns A single function or Array of functions
+ * @returns {*} The resulting transformed data
+ */
+module.exports = function transformData(data, headers, fns) {
+  /*eslint no-param-reassign:0*/
+  utils.forEach(fns, function transform(fn) {
+    data = fn(data, headers);
+  });
+
+  return data;
+};
+
+
+/***/ }),
+
+/***/ 231:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(2)(
   /* script */
-  __webpack_require__(177),
+  __webpack_require__(181),
   /* template */
-  __webpack_require__(227),
+  __webpack_require__(236),
   /* scopeId */
   null,
   /* cssModules */
@@ -11411,7 +11442,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 227:
+/***/ 236:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -11489,9 +11520,35 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     domProps: {
       "textContent": _vm._s(_vm.obj.token_number)
     }
-  })])])])]) : _vm._e(), (_vm.status == 3) ? _c('div', {
+  })])])]), _c('div', {
+    staticClass: "col-lg-12 col-md-12 col-xs-12 padding-none"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('button', {
+    staticClass: "btn btn-black",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        _vm.status = 0
+      }
+    }
+  }, [_vm._v("Вернуться к вводу номера")])])])]) : _vm._e(), (_vm.status == 3) ? _c('div', {
     staticClass: "form-state-fail text-left"
-  }, [_vm._m(5), _vm._m(6)]) : _vm._e()])
+  }, [_vm._m(5), _c('div', {
+    staticClass: "form-group"
+  }, [_c('button', {
+    staticClass: "btn btn-black",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        _vm.status = 0
+      }
+    }
+  }, [_vm._v("Ввести другой номер")])]), _vm._m(6)]) : _vm._e()])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "form-group"
@@ -11501,7 +11558,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "form-group"
-  }, [_c('p', [_vm._v("Если он находится на нашей стоянке, вы можете "), _c('br'), _vm._v(" узнать дату поступления и номер жетона.")])])
+  }, [_c('p', [_vm._v("Если он находится на нашей спец. стоянке, "), _c('br'), _vm._v(" вы можете узнать дату поступления и номер жетона")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "form-group"
@@ -11534,34 +11591,6 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-0ef78e70", module.exports)
   }
 }
-
-/***/ }),
-
-/***/ 23:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(1);
-
-/**
- * Transform the data for a request or a response
- *
- * @param {Object|String} data The data to be transformed
- * @param {Array} headers The headers for the request or response
- * @param {Array|Function} fns A single function or Array of functions
- * @returns {*} The resulting transformed data
- */
-module.exports = function transformData(data, headers, fns) {
-  /*eslint no-param-reassign:0*/
-  utils.forEach(fns, function transform(fn) {
-    data = fn(data, headers);
-  });
-
-  return data;
-};
-
 
 /***/ }),
 
@@ -11705,14 +11734,6 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 /***/ }),
 
-/***/ 262:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(155);
-
-
-/***/ }),
-
 /***/ 27:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11770,6 +11791,14 @@ module.exports = (
     };
   })()
 );
+
+
+/***/ }),
+
+/***/ 277:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(156);
 
 
 /***/ }),
@@ -12191,7 +12220,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 6:
+/***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12293,7 +12322,7 @@ module.exports = defaults;
 
 /***/ }),
 
-/***/ 7:
+/***/ 8:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!

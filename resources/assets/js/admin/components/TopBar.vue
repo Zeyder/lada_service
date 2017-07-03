@@ -13,11 +13,11 @@
         li.top-bar__item(v-if="user.role > 1", title="Пользователи", @click="setComponent('Users')", :class="{'top-bar__item_active': activeComponent == 'Users'}")
             i.fa.fa-user
             span.top-bar__text Пользователи
-        li.top-bar__item: button.btn.btn_white(@click="openAddModal")
+        li.top-bar__item_search: button.btn.btn_white(@click="openAddModal")
             i.fa.fa-plus
             span Добавить
         li.top-bar__item.top-bar__item_btn(title="Поиск", @click="toggleSearch"): i.fa.fa-search
-        li.top-bar__item: a.top-bar__link(href="/administrator/logout"): i.fa.fa-sign-out
+        li.top-bar__item.top-bar__item_exit: a.top-bar__link(href="/administrator/logout"): i.fa.fa-sign-out
 </template>
 <script>
 import {mapMutations} from 'vuex';
@@ -135,11 +135,12 @@ export default {
         @media(max-width 992px)
             display none
     &__item
-        &:nth-child(4)
+        &_search
             margin-left auto
-        &:nth-child(4)
-        &:nth-child(5)
-        &:nth-child(6)
+            line-height 64px
+        &_search
+        &_btn
+        &_exit
             opacity 1
             border-right 0
             font-size 18px

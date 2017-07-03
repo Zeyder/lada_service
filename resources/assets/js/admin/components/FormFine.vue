@@ -74,20 +74,11 @@ export default {
         }
     },
     watch: {
-        'data'(val, oldVal){
-            this.resetForm();
-            if (val != null){
-                this.form.fields.id = val.id ? val.id : '';
-                this.form.fields.model = val.model ? val.model : '',
-                this.form.fields.token_number = val.token_number ? val.token_number : '',
-                this.form.fields.state_number = val.state_number ? val.state_number : '',
-                this.form.fields.date_start = val.date_start.trim() != '' ? val.date_start.split(' ')[0] : '',
-                this.form.fields.date_parking = val.date_parking.trim() != '' ? val.date_parking.split(' ')[0] : '',
-                this.form.fields.date_end = val.date_end.trim() != '' ? val.date_end.split(' ')[0] : '',
-                this.form.fields.time_start = val.date_start.trim() != '' ? val.date_start.split(' ')[1] : '',
-                this.form.fields.time_parking = val.date_parking.trim() != '' ? val.date_parking.split(' ')[1] : '',
-                this.form.fields.time_end = val.date_end.trim() != '' ? val.date_end.split(' ')[1] : '',
-                this.form.fields.archive = val.archive ? val.archive : 0
+        data: {
+            deep: true,
+            handler(val, oldVal){
+                this.resetForm();
+                this.initData(val);
             }
         }
     },
@@ -127,6 +118,21 @@ export default {
         ...mapMutations({
             close: 'toggleModal'
         }),
+        initData(val){
+            if (val != null){
+                this.form.fields.id = val.id ? val.id : '';
+                this.form.fields.model = val.model ? val.model : '',
+                this.form.fields.token_number = val.token_number ? val.token_number : '',
+                this.form.fields.state_number = val.state_number ? val.state_number : '',
+                this.form.fields.date_start = val.date_start.trim() != '' ? val.date_start.split(' ')[0] : '',
+                this.form.fields.date_parking = val.date_parking.trim() != '' ? val.date_parking.split(' ')[0] : '',
+                this.form.fields.date_end = val.date_end.trim() != '' ? val.date_end.split(' ')[0] : '',
+                this.form.fields.time_start = val.date_start.trim() != '' ? val.date_start.split(' ')[1] : '',
+                this.form.fields.time_parking = val.date_parking.trim() != '' ? val.date_parking.split(' ')[1] : '',
+                this.form.fields.time_end = val.date_end.trim() != '' ? val.date_end.split(' ')[1] : '',
+                this.form.fields.archive = val.archive ? val.archive : 0
+            }
+        },
         changeDateStart(val){
             this.form.fields.date_start = val;
         },
@@ -173,16 +179,23 @@ export default {
         },
         cancelModal(){
             let changed = false;
-            for(let key in this.data){
-                changed = changed || (this.data[key] != this.form.fields[key]);
+            if (this.data != null){
+                changed = changed || (this.data.model != this.form.fields.model);
+                changed = changed || (this.data.state_number != this.form.fields.state_number);
+                changed = changed || (this.data.token_number != this.form.fields.token_number);
+                changed = changed || (this.data.date_start != (this.form.fields.date_start + ' ' + this.form.fields.time_start).trim());
+                changed = changed || (this.data.date_parking != (this.form.fields.date_parking + ' ' + this.form.fields.time_parking).trim());
+                changed = changed || (this.data.date_end != (this.form.fields.date_end + ' ' + this.form.fields.time_end).trim());
             }
             if (changed && confirm('Вы действительно хотите отменить действия?')){
                 this.close();
                 this.$parent.closeWrapper();
+                this.initData(this.data);
             }
             if (!changed){
                 this.close();
                 this.$parent.closeWrapper();
+                this.initData(this.data);
             }
         },
         resetForm(){

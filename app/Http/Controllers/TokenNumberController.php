@@ -90,7 +90,8 @@ class TokenNumberController extends Controller
     public function destroy(TokenNumber $tokenNumber)
     {
         if ($tokenNumber != ''){
-            TokenNumber::destroy($tokenNumber);
+            $token = TokenNumber::find($tokenNumber->id);
+            $token->delete();
             return 'Ok';
         }
         return response()->json([

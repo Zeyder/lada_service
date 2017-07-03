@@ -56,17 +56,20 @@ export default {
         }
     },
     watch: {
-        'info'(val, oldVal){
-            if (val != null){
-                this.data.id = val.id;
-                this.data.full_name = val.full_name;
-                this.data.login = val.login;
-                this.data.role = val.role;
-            }else{
-                this.data.id = '';
-                this.data.full_name = '';
-                this.data.login = '';
-                this.data.role = '';
+        info: {
+            deep: true,
+            handler(val, oldVal){
+                if (val != null){
+                    this.data.id = val.id;
+                    this.data.full_name = val.full_name;
+                    this.data.login = val.login;
+                    this.data.role = val.role;
+                }else{
+                    this.data.id = '';
+                    this.data.full_name = '';
+                    this.data.login = '';
+                    this.data.role = '';
+                }
             }
         }
     },

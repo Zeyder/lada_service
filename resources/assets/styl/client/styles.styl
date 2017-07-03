@@ -118,6 +118,11 @@ address
     border-radius 2px
     height 45px
     transition all 250ms ease
+    &-black
+        background-color black
+        color white
+        &:hover
+            opacity .9
     &-danger
         background-color red
         color white
@@ -150,12 +155,12 @@ label.label
         left 0
     &-state-success
         background-image url('../../img/done_circle.svg');
-        padding-top 15%
+        padding-top 3%
         @media(max-width 770px)
             padding-top 25px
     &-state-fail
         background-image url('../../img/not_found_circle.svg')
-        padding-top 25%
+        padding-top 12%
         @media(max-width 770px)
             padding-top 25px
     &-preloader

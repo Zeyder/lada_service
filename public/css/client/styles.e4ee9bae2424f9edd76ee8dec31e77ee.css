@@ -1535,7 +1535,7 @@ label.label {
 }
 .form-state-success {
   background-image: url(/fonts/done_circle.svg?8efa651aec1116d9192b8a2cb4e4b86c);
-  padding-top: 3%;
+  padding-top: 15%;
 }
 @media (max-width: 770px) {
   .form-state-success {
@@ -1544,7 +1544,7 @@ label.label {
 }
 .form-state-fail {
   background-image: url(/fonts/not_found_circle.svg?53c5cf628a5ff3acf0e1c8a349badfac);
-  padding-top: 12%;
+  padding-top: 25%;
 }
 @media (max-width: 770px) {
   .form-state-fail {

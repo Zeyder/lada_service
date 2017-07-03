@@ -32,6 +32,11 @@ export default {
         }),
         //Количество архивных записей в базе данных
         countArchives(){
+            if (this.more){
+                return this.$store.state.arсhiveCards.length;
+            }else{
+                return this.$store.state.arсhiveCards.length + window.__INITIAL_STATE__.state.count_archives;
+            }
             return this.more ? this.$store.state.arсhiveCards.length : window.__INITIAL_STATE__.state.count_archives;
         },
         countFines(){

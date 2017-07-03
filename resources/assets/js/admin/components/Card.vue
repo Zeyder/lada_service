@@ -65,15 +65,21 @@ export default {
         }
     },
     watch: {
-        'info'(val, oldVal){    
-            this.data.id = val.id;
-            this.data.model = val.model;
-            this.data.token_number = val.token_number;
-            this.data.state_number = val.state_number;
-            this.data.date_start = val.date_start;
-            this.data.date_parking = val.date_parking;
-            this.data.date_end = val.date_end;
-            this.data.archive = val.archive;
+        info: {
+            deep: true,
+            handler(val, oldVal){
+                this.resetData();
+                if (val !== null){
+                    this.data.id = val.id;
+                    this.data.model = val.model;
+                    this.data.token_number = val.token_number;
+                    this.data.state_number = val.state_number;
+                    this.data.date_start = val.date_start;
+                    this.data.date_parking = val.date_parking;
+                    this.data.date_end = val.date_end;
+                    this.data.archive = val.archive;
+                }    
+            }
         }
     },
     computed: {

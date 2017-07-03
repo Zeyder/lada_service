@@ -60,13 +60,16 @@ export default {
         }
     },
     watch: {
-        'data'(val, oldVal){
-            this.resetForm();
-            if (val != null){
-                this.form.fields.id = val.id,
-                this.form.fields.login = val.login;
-                this.form.fields.full_name = val.full_name;
-                this.form.fields.role = val.role;
+        data: {
+            deep: true,
+            handler(val, oldVal){
+                this.resetForm();
+                if (val != null){
+                    this.form.fields.id = val.id,
+                    this.form.fields.login = val.login;
+                    this.form.fields.full_name = val.full_name;
+                    this.form.fields.role = val.role;
+                }
             }
         }
     },

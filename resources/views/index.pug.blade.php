@@ -82,7 +82,7 @@ html(lang="ru")
             .row: .col-lg-12.col-md-12.col-xs-12: .form-group: h2.text-size-h3.text-left Нам доверяют компании…
             .row 
                 .col-lg-7.col-md-7.col-xs-12.padding-right-none
-                    .form-group: h3.text-size-h5.text-color-black.text-left.weight-light.opacity-5 Муниципальные и правоохранительные органы России
+                    .form-group: h3.text-size-h5.text-color-black.text-left.weight-light.opacity-5 Государственные и правоохранительные органы
                     .form-group
                         .inline-block.align-top.icon-margin-lg: img(src="images/sled_circle.png")
                         .inline-block.align-top.icon-margin-lg: p.text-size-h4.weight-normal Следственное Управление <br> Следственного комитета <br> России по Республике Бурятия
