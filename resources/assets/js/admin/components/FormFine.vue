@@ -13,29 +13,29 @@
         .col-lg-6.col-md-6.col-xs-12
             .col-lg-4.col-md-4.col-xs-12: .row: .form__group
                 label.label Номер жетона
-                autocompleter(:items="filteredTokenNumbers", @data-change="changeToken", :startVal="form.fields.token_number", :class="{'input_invalid': form.submit && !isValidTokenNumber}")
+                autocompleter(:items="filteredTokenNumbers", @data-change="changeToken", :startVal="form.fields.token_number", :validation-class-obj="{'input_invalid': form.submit && !isValidTokenNumber}")
             .col-lg-12.col-md-12.col-xs-12
-            .col-lg-8.col-md-8.col-xs-8: .row: .form__group
+            .col-lg-8.col-md-8.col-xs-12: .row: .form__group
                 label.label Государственный номер
                 input.input(type="text", v-model="form.fields.state_number", :class="{'input_invalid': form.submit && !isValidStateNumber}")
     .modal__body: .row
         .col-lg-6.col-md-6.col-xs-12
             .col-lg-8.col-md-8.col-xs-8: .row: .form__group
                 label.label Перевод на стоянку
-                date-input(:date="form.fields.date_parking", @date-change="changeDateParking", :class="{'input_invalid': form.submit && !isValidDateParking}")
+                date-input(:date="form.fields.date_parking", @date-change="changeDateParking")
             .col-lg-4.col-md-4.col-xs-4.padding_none_right: .form__group
                 label.label &nbsp;
-                input.input(type="text", v-model="form.fields.time_parking", v-mask="'00:00'", :class="{'input_invalid': form.submit && !isValidTimeParking}")
+                input.input(type="text", v-model="form.fields.time_parking", v-mask="'00:00'")
             .col-lg-8.col-md-8.col-xs-8: .row: .form__group
                 label.label Выдача
-                date-input(:date="form.fields.date_end", @date-change="changeDateEnd", :class="{'input_invalid': form.submit && !isValidDateEnd}")
+                date-input(:date="form.fields.date_end", @date-change="changeDateEnd")
             .col-lg-4.col-md-4.col-xs-4.padding_none_right: .form__group
                 label.label &nbsp;
-                input.input(type="text", v-model="form.fields.time_end", v-mask="'00:00'", :class="{'input_invalid': form.submit && !isValidTimeEnd}")
+                input.input(type="text", v-model="form.fields.time_end", v-mask="'00:00'")
         .col-lg-6.col-md-6.col-xs-12
             .col-lg-8.col-md-8.col-xs-8: .row: .form__group
                 label.label Задержание
-                date-input(:date="form.fields.date_start", @date-change="changeDateStart", :class="{'input_invalid': form.submit && !isValidDateStart}")
+                date-input(:date="form.fields.date_start", @date-change="changeDateStart", :validation-class-obj="{'input_invalid': form.submit && !isValidDateStart}")
             .col-lg-4.col-md-4.col-xs-4.padding_none_right: .form__group
                 label.label &nbsp;
                 input.input(type="text", v-model="form.fields.time_start", v-mask="'00:00'", :class="{'input_invalid': form.submit && !isValidTimeStart}")
@@ -73,6 +73,7 @@ export default {
             }
         }
     },
+    
     watch: {
         data: {
             deep: true,
@@ -146,6 +147,11 @@ export default {
             this.form.fields.token_number = val;
         },
         submitForm(){
+            this.form.submit = false;
+            if (!(this.isValidModel && this.isValidStateNumber && this.isValidTokenNumber && this.isValidDateStart)){
+                this.form.submit = true;
+                return false;
+            }
             let fine = {
                 ...this.form.fields,
                 date_start: this.isValidDateStart && this.isValidTimeStart ? `${this.form.fields.date_start} ${this.form.fields.time_start}` : '',
@@ -191,11 +197,13 @@ export default {
                 this.close();
                 this.$parent.closeWrapper();
                 this.initData(this.data);
+                this.form.submit = false;
             }
             if (!changed){
                 this.close();
                 this.$parent.closeWrapper();
                 this.initData(this.data);
+                this.form.submit = false;
             }
         },
         resetForm(){
@@ -210,7 +218,7 @@ export default {
             this.form.fields.time_parking = '';
             this.form.fields.time_end = '';
             this.form.fields.archive = 0;
-            
+            this.form.submit = false;
         }
     }
 }

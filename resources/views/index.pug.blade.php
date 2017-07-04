@@ -5,6 +5,8 @@ html(lang="ru")
         meta(charset="utf-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
         meta(name="viewport", content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui")
+        meta(name="yandex-verification", content="daad3835f5ca89e0")
+        meta(name="google-site-verification", content="BtdjVJmc4bwDOMVdUxXCWOV1N71flRM6KbjutiKLSy4")
         meta(name="format-detection", content="telephone=no")
         meta(name="robots", content="index, follow")
         meta(name="description", content="")
@@ -18,7 +20,7 @@ html(lang="ru")
         link(rel="shortcut icon", size="16x16", type="image/png", href="img/16x16.png")
         link(rel="shortcut icon", size="36x36", type="image/png", href="img/36x36.png")
         link(rel="shortcut icon", size="48x48", type="image/png", href="img/48x48.png")
-        link(href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=cyrillic", rel="stylesheet")
+        //link(href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=cyrillic", rel="stylesheet")
         link(rel="stylesheet", href="{{mix('css/client/styles.css')}}")
         title Эвакуируем ваш автомобиль
     body
@@ -156,16 +158,18 @@ html(lang="ru")
                         p.user-name.text-color-gray Александр, <br> автопутешественник из Забайкальска
                     img.man.man-alexander(src="images/alexander.png")
         footer.sections#footer: .container: .row.text-left
-            .col-lg-7.col-md-7.col-xs-12
+            .col-lg-7.col-md-7.col-xs-12: p
                 .form-group: span.text-size-h4.text-color-white.opacity-5 Звоните в любой непонятной ситуации
                 .form-group: a.text-color-white.contacts(href="tel:73012451122") +7 3012 <b>45 11 22</b>
                 .form-group: a.text-color-white.contacts(href="tel:79021686282") +7 9021 <b>68 62 82</b>
                 .form-group: span.text-size-h4.text-color-white.opacity-5 Пишите с коммерческими предложениями
                 .form-group: a.text-color-white.contacts.weight-normal(href="mailto:asialada@mail.ru") asialada@mail.ru
-            .col-lg-5.col-md-5.col-xs-12
-                .form-group: span.text-size-h4.text-color-white.opacity-5 Звоните в любой непонятной ситуации
+            .col-lg-5.col-md-5.col-xs-12: p
+                .form-group: span.text-size-h4.text-color-white.opacity-5 Проехать к нам можно по адресу
                 .form-group: address.text-color-white.text-size-h3.weight-normal 670042<br> Республика Бурятия<br> город Улан-Удэ<br> ул. Мокрова, 31а
                 .form-group: a.btn.btn-danger(href="https://2gis.ru/ulanude/query/%D0%BC%D0%BE%D0%BA%D1%80%D0%BE%D0%B2%D0%B0%2C%2031%D0%B0/geo/5207922724322498?queryState=center%2F107.64473%2C51.804993%2Fzoom%2F16", target="_blank")
                     i.icon.icon-marker.icon-margin-md
                     |Схема проезда на 2GIS
         script(src="{{mix('js/client/app.js')}}")
+        script(async) (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter45194376 = new Ya.Metrika({ id:45194376, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");
+        script(async) (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-52970006-14', 'auto');ga('send', 'pageview');

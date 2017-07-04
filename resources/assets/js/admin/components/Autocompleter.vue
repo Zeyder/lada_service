@@ -1,12 +1,12 @@
 <template lang="jade">
 .autocomplete
-    input.input(type="text", v-model="searchStr", @focus="onFocus", @blur="onBlur")
+    input.input(type="text", v-model="searchStr", @focus="onFocus", @blur="onBlur", :class="validationClassObj")
     .autocomplete__wrapper(v-show="show"): ul.autocomplete__list: li.autocomplete__item(v-for="item in filteredItems", :key="item", v-text="item.number", @click="select(item.number)")
 </template>
 <script>
 export default {
     name: 'autocompleter',
-    props: ['items', 'startVal'],
+    props: ['items', 'startVal', 'validationClassObj'],
     data(){
         return {
             searchStr: '',

@@ -36,7 +36,7 @@ export default {
             close: 'toggleModal'
         }),
         submitForm(){
-            this.form.submit = true;
+            this.form.submit = false;
             if (this.isValidNumber){
                 this.$children[0].loading();
                 this.$store.dispatch('ADD_TOKEN_NUMBER', {
@@ -47,6 +47,8 @@ export default {
                     },
                     reject: e => this.$children[0].error()
                 });
+            }else{
+                this.form.submit = true;
             }
         },
          cancelModal(){

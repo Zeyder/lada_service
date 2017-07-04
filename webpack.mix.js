@@ -15,7 +15,7 @@ mix.js('resources/assets/js/admin/app.js', 'public/js/admin')
     .stylus('resources/assets/styl/admin/styles.styl', 'public/css/admin')
     .js('resources/assets/js/client/app.js', 'public/js/client')
     .stylus('resources/assets/styl/client/styles.styl', 'public/css/client')
-    .version();
+   .version();
 
 
 if (mix.inProduction()) {

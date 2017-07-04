@@ -38854,7 +38854,7 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
     name: 'autocompleter',
-    props: ['items', 'startVal'],
+    props: ['items', 'startVal', 'validationClassObj'],
     data: function data() {
         return {
             searchStr: '',
@@ -39144,7 +39144,7 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
     name: 'date-input',
-    props: ['date'],
+    props: ['date', 'validationClassObj'],
     data: function data() {
         return {
             localDate: ''
@@ -39272,6 +39272,7 @@ exports.default = {
         };
     },
 
+
     watch: {
         data: {
             deep: true,
@@ -39334,6 +39335,11 @@ exports.default = {
         submitForm: function submitForm() {
             var _this = this;
 
+            this.form.submit = false;
+            if (!(this.isValidModel && this.isValidStateNumber && this.isValidTokenNumber && this.isValidDateStart)) {
+                this.form.submit = true;
+                return false;
+            }
             var fine = _extends({}, this.form.fields, {
                 date_start: this.isValidDateStart && this.isValidTimeStart ? this.form.fields.date_start + ' ' + this.form.fields.time_start : '',
                 date_parking: this.isValidDateParking && this.isValidTimeParking ? this.form.fields.date_parking + ' ' + this.form.fields.time_parking : '',
@@ -39366,21 +39372,25 @@ exports.default = {
         },
         cancelModal: function cancelModal() {
             var changed = false;
-            changed = changed || this.data.model != this.form.fields.model;
-            changed = changed || this.data.state_number != this.form.fields.state_number;
-            changed = changed || this.data.token_number != this.form.fields.token_number;
-            changed = changed || this.data.date_start != (this.form.fields.date_start + ' ' + this.form.fields.time_start).trim();
-            changed = changed || this.data.date_parking != (this.form.fields.date_parking + ' ' + this.form.fields.time_parking).trim();
-            changed = changed || this.data.date_end != (this.form.fields.date_end + ' ' + this.form.fields.time_end).trim();
+            if (this.data != null) {
+                changed = changed || this.data.model != this.form.fields.model;
+                changed = changed || this.data.state_number != this.form.fields.state_number;
+                changed = changed || this.data.token_number != this.form.fields.token_number;
+                changed = changed || this.data.date_start != (this.form.fields.date_start + ' ' + this.form.fields.time_start).trim();
+                changed = changed || this.data.date_parking != (this.form.fields.date_parking + ' ' + this.form.fields.time_parking).trim();
+                changed = changed || this.data.date_end != (this.form.fields.date_end + ' ' + this.form.fields.time_end).trim();
+            }
             if (changed && confirm('Вы действительно хотите отменить действия?')) {
                 this.close();
                 this.$parent.closeWrapper();
                 this.initData(this.data);
+                this.form.submit = false;
             }
             if (!changed) {
                 this.close();
                 this.$parent.closeWrapper();
                 this.initData(this.data);
+                this.form.submit = false;
             }
         },
         resetForm: function resetForm() {
@@ -39395,6 +39405,7 @@ exports.default = {
             this.form.fields.time_parking = '';
             this.form.fields.time_end = '';
             this.form.fields.archive = 0;
+            this.form.submit = false;
         }
     })
 };
@@ -39513,8 +39524,8 @@ exports.default = {
         submitForm: function submitForm() {
             var _this = this;
 
+            this.form.submit = false;
             if (this.method == 'insert') {
-                this.form.submit = true;
                 if (this.isValidForm) {
                     this.$parent.loading();
                     this.$store.dispatch('ADD_USER', {
@@ -39527,6 +39538,8 @@ exports.default = {
                             return _this.$parent.error();
                         }
                     });
+                } else {
+                    this.form.submit = true;
                 }
             } else {
                 if (this.form.fields.full_name != '') {
@@ -39559,19 +39572,29 @@ exports.default = {
         },
         cancelModal: function cancelModal() {
             if (this.method == 'insert') {
-                if ((this.form.fields.login != '' || this.form.fields.full_name != '' || this.form.fields.password != '') && confirm('Вы действительно хотите отменить действия?')) {
+                var changed = this.form.fields.login != '' || this.form.fields.full_name != '' || this.form.fields.password != '';
+                if (changed && confirm('Вы действительно хотите отменить действия?')) {
                     this.close();
                     this.resetForm();
                     this.$parent.closeWrapper();
+                    this.form.submit = false;
+                }
+                if (!changed) {
+                    this.close();
+                    this.resetForm();
+                    this.$parent.closeWrapper();
+                    this.form.submit = false;
                 }
             } else {
                 if ((this.form.fields.role != this.data.role || this.form.fields.full_name != this.data.full_name || this.form.fields.password != '' || this.form.fields.password_confirmation != '') && confirm('Вы действительно хотите отменить действия?')) {
                     this.close();
                     this.$parent.closeWrapper();
+                    this.form.submit = false;
                 }
                 if (this.form.fields.role == this.data.role && this.form.fields.full_name == this.data.full_name && this.form.fields.password == '' && this.form.fields.password_confirmation == '') {
                     this.close();
                     this.$parent.closeWrapper();
+                    this.form.submit = false;
                 }
             }
         },
@@ -39726,7 +39749,7 @@ exports.default = {
         submitForm: function submitForm() {
             var _this = this;
 
-            this.form.submit = true;
+            this.form.submit = false;
             if (this.isValidNumber) {
                 this.$children[0].loading();
                 this.$store.dispatch('ADD_TOKEN_NUMBER', {
@@ -39739,6 +39762,8 @@ exports.default = {
                         return _this.$children[0].error();
                     }
                 });
+            } else {
+                this.form.submit = true;
             }
         },
         cancelModal: function cancelModal() {
@@ -40778,7 +40803,7 @@ exports.default = new _vuex2.default.Store({
 
         //Запоминаем архивные карточки
         setArсhiveCards: function setArHiveCards(state, cards) {
-            state.arсhiveCards = state.arсhiveCards.concat(cards);
+            state.arсhiveCards = cards;
         },
 
         //Находим и удаляем жетон
@@ -46306,6 +46331,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     ref: "inputDate",
     staticClass: "input",
+    class: _vm.validationClassObj,
     attrs: {
       "type": "text"
     },
@@ -46374,6 +46400,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "searchStr"
     }],
     staticClass: "input",
+    class: _vm.validationClassObj,
     attrs: {
       "type": "text"
     },
@@ -46870,12 +46897,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('label', {
     staticClass: "label"
   }, [_vm._v("Номер жетона")]), _c('autocompleter', {
-    class: {
-      'input_invalid': _vm.form.submit && !_vm.isValidTokenNumber
-    },
     attrs: {
       "items": _vm.filteredTokenNumbers,
-      "startVal": _vm.form.fields.token_number
+      "startVal": _vm.form.fields.token_number,
+      "validation-class-obj": {
+        'input_invalid': _vm.form.submit && !_vm.isValidTokenNumber
+      }
     },
     on: {
       "data-change": _vm.changeToken
@@ -46883,7 +46910,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })], 1)])]), _c('div', {
     staticClass: "col-lg-12 col-md-12 col-xs-12"
   }), _c('div', {
-    staticClass: "col-lg-8 col-md-8 col-xs-8"
+    staticClass: "col-lg-8 col-md-8 col-xs-12"
   }, [_c('div', {
     staticClass: "row"
   }, [_c('div', {
@@ -46928,9 +46955,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('label', {
     staticClass: "label"
   }, [_vm._v("Перевод на стоянку")]), _c('date-input', {
-    class: {
-      'input_invalid': _vm.form.submit && !_vm.isValidDateParking
-    },
     attrs: {
       "date": _vm.form.fields.date_parking
     },
@@ -46956,9 +46980,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "'00:00'"
     }],
     staticClass: "input",
-    class: {
-      'input_invalid': _vm.form.submit && !_vm.isValidTimeParking
-    },
     attrs: {
       "type": "text"
     },
@@ -46980,9 +47001,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('label', {
     staticClass: "label"
   }, [_vm._v("Выдача")]), _c('date-input', {
-    class: {
-      'input_invalid': _vm.form.submit && !_vm.isValidDateEnd
-    },
     attrs: {
       "date": _vm.form.fields.date_end
     },
@@ -47008,9 +47026,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "'00:00'"
     }],
     staticClass: "input",
-    class: {
-      'input_invalid': _vm.form.submit && !_vm.isValidTimeEnd
-    },
     attrs: {
       "type": "text"
     },
@@ -47034,11 +47049,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('label', {
     staticClass: "label"
   }, [_vm._v("Задержание")]), _c('date-input', {
-    class: {
-      'input_invalid': _vm.form.submit && !_vm.isValidDateStart
-    },
     attrs: {
-      "date": _vm.form.fields.date_start
+      "date": _vm.form.fields.date_start,
+      "validation-class-obj": {
+        'input_invalid': _vm.form.submit && !_vm.isValidDateStart
+      }
     },
     on: {
       "date-change": _vm.changeDateStart

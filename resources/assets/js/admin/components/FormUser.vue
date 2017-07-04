@@ -98,8 +98,8 @@ export default {
             close: 'toggleModal'
         }),
         submitForm(){
+            this.form.submit = false;
             if (this.method == 'insert'){
-                this.form.submit = true;
                 if (this.isValidForm){
                     this.$parent.loading();
                     this.$store.dispatch('ADD_USER', {
@@ -110,6 +110,8 @@ export default {
                         },
                         reject: e => this.$parent.error()
                     });
+                }else{
+                    this.form.submit = true;
                 }
             }else{
                 if (this.form.fields.full_name != ''){
@@ -140,19 +142,29 @@ export default {
         },
         cancelModal(){
             if (this.method == 'insert'){
-                if ((this.form.fields.login != '' || this.form.fields.full_name != '' || this.form.fields.password != '') && confirm('Вы действительно хотите отменить действия?')){
+                let changed = (this.form.fields.login != '' || this.form.fields.full_name != '' || this.form.fields.password != '');
+                if (changed && confirm('Вы действительно хотите отменить действия?')){
                     this.close();
                     this.resetForm();
                     this.$parent.closeWrapper();
+                    this.form.submit = false;
+                }
+                if (!changed){
+                    this.close();
+                    this.resetForm();
+                    this.$parent.closeWrapper();
+                    this.form.submit = false;
                 }
             }else{
                 if ((this.form.fields.role != this.data.role || this.form.fields.full_name != this.data.full_name || this.form.fields.password != '' || this.form.fields.password_confirmation != '') && confirm('Вы действительно хотите отменить действия?')){
                     this.close();
                     this.$parent.closeWrapper();
+                    this.form.submit = false;
                 }
                 if (this.form.fields.role == this.data.role && this.form.fields.full_name == this.data.full_name && this.form.fields.password == '' && this.form.fields.password_confirmation == ''){
                     this.close();
                     this.$parent.closeWrapper();
+                    this.form.submit = false;
                 }
             }
         },

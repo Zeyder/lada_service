@@ -1,12 +1,12 @@
 <template lang="jade">
 .group-input
-    input.input(type="text", v-model="localDate", ref="inputDate")
+    input.input(type="text", v-model="localDate", ref="inputDate", :class="validationClassObj")
     .group-input__icon: i.fa.fa-calendar
 </template>
 <script>
 export default {
     name: 'date-input',
-    props: ['date'],
+    props: ['date', 'validationClassObj'],
     data(){
         return {
             localDate: ''
