@@ -31,7 +31,10 @@
                 label.label Перевод на стоянку
                 span.card__text.card__time-parking(v-text="data.date_parking")
         .col-lg-12.col-md-12.col-xs-12: .row
-            button.btn.btn_default.card__edit(@click="toggleModal('editFine')")
+            button.btn.btn_default.card__edit(@click="toggleModal('editFine')", v-if="modal")
+                i.fa.fa-edit
+                | Редактировать    
+            button.btn.btn_default.card__edit(@click="editFine", v-else)
                 i.fa.fa-edit
                 | Редактировать    
             button.btn.btn_danger.card__delete(@click="goToArchive", v-if="data.archive == 0")
@@ -90,19 +93,20 @@ export default {
     methods: {
         ...mapMutations(['toggleModal']),
         goToArchive(){
+            
             if (confirm('Вы действительно хотите сделать запись архивной?')){
                 this.data.archive = 1;
-                this.$parent.loading();
+                this.modal && this.$parent.loading();
                 this.$store.dispatch('UPDATE_FINE', {
                     fine: this.data,
-                    resolve: () => {
-                        this.$parent.success();
-                    },
-                    reject: () => {
-                        this.$parent.error();
-                    }
+                    resolve: () => this.modal && this.$parent.success(),
+                    reject: () => this.modal && this.$parent.error()
                 });
             }
+        },
+        editFine(){
+            this.$store.commit('setEditableCard', this.info);
+            this.toggleModal('editFine');
         },
         resetData(){
             this.data.id =  '';

@@ -38953,6 +38953,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
 
 var _Card = __webpack_require__(36);
 
@@ -39015,17 +39018,21 @@ exports.default = {
 
             if (confirm('Вы действительно хотите сделать запись архивной?')) {
                 this.data.archive = 1;
-                this.$parent.loading();
+                this.modal && this.$parent.loading();
                 this.$store.dispatch('UPDATE_FINE', {
                     fine: this.data,
                     resolve: function resolve() {
-                        _this.$parent.success();
+                        return _this.modal && _this.$parent.success();
                     },
                     reject: function reject() {
-                        _this.$parent.error();
+                        return _this.modal && _this.$parent.error();
                     }
                 });
             }
+        },
+        editFine: function editFine() {
+            this.$store.commit('setEditableCard', this.info);
+            this.toggleModal('editFine');
         },
         resetData: function resetData() {
             this.data.id = '';
@@ -47793,12 +47800,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col-lg-12 col-md-12 col-xs-12"
   }, [_c('div', {
     staticClass: "row"
-  }, [_c('button', {
+  }, [(_vm.modal) ? _c('button', {
     staticClass: "btn btn_default card__edit",
     on: {
       "click": function($event) {
         _vm.toggleModal('editFine')
       }
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-edit"
+  }), _vm._v("Редактировать    ")]) : _c('button', {
+    staticClass: "btn btn_default card__edit",
+    on: {
+      "click": _vm.editFine
     }
   }, [_c('i', {
     staticClass: "fa fa-edit"
