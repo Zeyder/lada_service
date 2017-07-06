@@ -149,9 +149,15 @@ export default new Vuex.Store({
                 }
                 if (cardFinded.archive == 1){
                     let isNotArchive = state.cards.findIndex(item => item.id == cardFinded.id);
-                    if (isNotArchive != -1){
+                    if (isNotArchive !== -1){
                         state.arсhiveCards.push(cardFinded);
                         state.cards.splice(isNotArchive, 1);
+                    }
+                }else{
+                    let isArchive = state.arсhiveCards.findIndex(item => item.id == cardFinded.id);
+                    if (isArchive !== -1){
+                        state.cards.push(cardFinded);
+                        state.arсhiveCards.splice(isArchive, 1);
                     }
                 }
             }

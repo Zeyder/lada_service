@@ -39240,6 +39240,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
 
 var _DateInput = __webpack_require__(216);
 
@@ -40768,9 +40772,17 @@ exports.default = new _vuex2.default.Store({
                     var isNotArchive = state.cards.findIndex(function (item) {
                         return item.id == cardFinded.id;
                     });
-                    if (isNotArchive != -1) {
+                    if (isNotArchive !== -1) {
                         state.arсhiveCards.push(cardFinded);
                         state.cards.splice(isNotArchive, 1);
+                    }
+                } else {
+                    var isArchive = state.arсhiveCards.findIndex(function (item) {
+                        return item.id == cardFinded.id;
+                    });
+                    if (isArchive !== -1) {
+                        state.cards.push(cardFinded);
+                        state.arсhiveCards.splice(isArchive, 1);
                     }
                 }
             }
@@ -46304,7 +46316,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "position": $index
       }
     })
-  }), (_vm.archives.length) ? _c('h2', [_vm._v("Архивные")]) : _vm._e(), _vm._l((_vm.archives), function(card, $index) {
+  }), _c('div', {
+    staticClass: "col-lg-12 col-md-12 col-xs-12"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [(_vm.archives.length) ? _c('h2', [_vm._v("Архивные")]) : _vm._e()])]), _vm._l((_vm.archives), function(card, $index) {
     return _c('card', {
       key: card.id,
       attrs: {
@@ -47100,6 +47116,46 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   })])])]), _c('div', {
+    staticClass: "col-lg-12 col-md-12 col-xs-12"
+  }, [_c('div', {
+    staticClass: "form__group"
+  }, [_c('label', {
+    staticClass: "label"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.form.fields.archive),
+      expression: "form.fields.archive"
+    }],
+    staticClass: "checkbox",
+    attrs: {
+      "type": "checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.form.fields.archive) ? _vm._i(_vm.form.fields.archive, null) > -1 : (_vm.form.fields.archive)
+    },
+    on: {
+      "__c": function($event) {
+        var $$a = _vm.form.fields.archive,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$c) {
+            $$i < 0 && (_vm.form.fields.archive = $$a.concat($$v))
+          } else {
+            $$i > -1 && (_vm.form.fields.archive = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+          }
+        } else {
+          _vm.form.fields.archive = $$c
+        }
+      }
+    }
+  }), _c('span', {
+    staticClass: "label__text"
+  }, [_vm._v("Архивная")])])])]), _c('div', {
     staticClass: "col-lg-12 col-md-12 col-xs-12"
   }, [(_vm.method == 'update') ? _c('button', {
     staticClass: "btn btn_default modal__save"

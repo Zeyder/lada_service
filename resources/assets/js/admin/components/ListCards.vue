@@ -1,7 +1,7 @@
 <template lang="jade">
 .container
     card(v-for="(card, $index) in cards", :info="card", :position="$index", :key="card.id")
-    h2(v-if="archives.length") Архивные
+    .col-lg-12.col-md-12.col-xs-12: .row: h2(v-if="archives.length") Архивные
     card(v-for="(card, $index) in archives", :info="card", :position="$index", :key="card.id")
 </template>
 <script>

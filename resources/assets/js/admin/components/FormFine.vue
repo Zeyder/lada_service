@@ -39,6 +39,10 @@
             .col-lg-4.col-md-4.col-xs-4.padding_none_right: .form__group
                 label.label &nbsp;
                 input.input(type="text", v-model="form.fields.time_start", v-mask="'00:00'", :class="{'input_invalid': form.submit && !isValidTimeStart}")
+        .col-lg-12.col-md-12.col-xs-12: .form__group
+            label.label
+                input.checkbox(type="checkbox", v-model="form.fields.archive")
+                span.label__text Архивная
         .col-lg-12.col-md-12.col-xs-12
             button.btn.btn_default.modal__save(v-if="method == 'update'") Сохранить изменения
             button.btn.btn_default.modal__save(v-if="method == 'insert'") Добавить
