@@ -1482,6 +1482,16 @@ address {
 .input:focus {
   border-color: rgba(0,0,0,0.2);
 }
+.number-group {
+  text-align: left;
+  display: inline-block;
+}
+@media (max-width: 768px) {
+  .number-group {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+}
 .btn {
   display: inline-block;
   outline: none;
@@ -1497,15 +1507,25 @@ address {
   background-color: #0a100d;
   color: #fff;
 }
-.btn-black:hover {
-  opacity: 0.9;
+@media (min-width: 992px) {
+  .btn-black:hover {
+    opacity: 0.9;
+  }
 }
 .btn-danger {
   background-color: #990d0d;
   color: #fff;
 }
-.btn-danger:hover {
-  opacity: 0.9;
+@media (min-width: 992px) {
+  .btn-danger:hover {
+    opacity: 0.9;
+  }
+}
+@media (max-width: 768px) {
+  .btn-block {
+    display: block;
+    width: 100%;
+  }
 }
 a.btn {
   line-height: 35px;
@@ -1577,20 +1597,67 @@ label.label {
   margin-bottom: 55px;
 }
 .intro-title {
-  line-height: ;
   margin: 0;
 }
+@media (max-width: 768px) {
+  .intro-title {
+    line-height: 4rem;
+    font-size: 3rem;
+  }
+}
+@media (max-width: 768px) {
+  .intro-title>span {
+    font-size: 4rem;
+    display: block;
+  }
+}
 .intro-text {
-  line-height: ;
   margin: 0;
+}
+#tele-2 {
+  margin-top: 12px;
+  margin-right: 10px;
+}
+@media (max-width: 992px) {
+  #tele-2 {
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    margin: 0;
+    -webkit-transform: translateX(100%) translateY(-50%);
+            transform: translateX(100%) translateY(-50%);
+  }
+}
+@media (max-width: 992px) {
+  #day-and-night {
+    display: none;
+  }
 }
 #section_1 {
   background: #fff url(/images/background_image.png?b2d719da816d570f6cf83a672d0529c8) no-repeat center;
   background-size: cover;
+  padding-bottom: 80px;
+}
+#section_1 .contacts-right {
+  text-align: right;
+}
+@media (max-width: 992px) {
+  #section_1 .contacts-right {
+    text-align: left;
+  }
+}
+#section_1 .contacts-wrapper {
+  position: relative;
+}
+#section_1 .form-group-xs {
+  margin-bottom: 10px;
+}
+#section_1 .form-group-xs:nth-child(2) {
+  margin-bottom: 5px;
 }
 .contacts {
-  font-size: 36px;
-  line-height: 36px;
+  font-size: 2.75rem;
+  line-height: 2.75rem;
   text-decoration: none;
 }
 @media (max-width: 330px) {

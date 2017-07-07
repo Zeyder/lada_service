@@ -108,6 +108,12 @@ address
     &:focus
         border-color rgba(0,0,0, .2)
 
+.number-group
+    text-align left
+    display inline-block
+    @media(max-width 768px)
+        transform scale(1.5)
+
 .btn
     display inline-block
     outline none
@@ -121,13 +127,19 @@ address
     &-black
         background-color black
         color white
-        &:hover
-            opacity .9
+        @media(min-width 992px)
+            &:hover
+                opacity .9
     &-danger
         background-color red
         color white
-        &:hover
-            opacity .9
+        @media(min-width 992px)
+            &:hover
+                opacity .9
+    &-block
+        @media(max-width 768px)
+            display block
+            width 100%
 a.btn
     line-height 35px
 
@@ -187,20 +199,49 @@ label.label
     margin-bottom 55px
     &-title
         @extend .text-size-lg
-        line-height @font-size
         margin 0
+        @media(max-width 768px)
+            line-height 4rem
+            font-size 3rem
+        &>span
+            @media(max-width 768px)
+                font-size 4rem
+                display block
     &-text
         @extend .text-size-h2
-        line-height @font-size
         margin 0
+#tele-2
+    margin-top 12px
+    margin-right 10px
+    @media(max-width 992px)
+        position absolute
+        right -10px
+        top 50%
+        margin 0
+        transform translateX(100%) translateY(-50%)
+#day-and-night
+    @media(max-width 992px)
+        display none
 
 #section_1
     background #fff url('../../img/background_image.png') no-repeat center
     background-size cover
+    padding-bottom 80px
+    .contacts
+        &-right
+            text-align right
+            @media(max-width 992px)
+                text-align left
+        &-wrapper
+            position relative
+    .form-group-xs
+        margin-bottom 10px
+        &:nth-child(2)
+            margin-bottom 5px
 
 .contacts
-    font-size 36px
-    line-height 36px
+    font-size 2.75rem
+    line-height 2.75rem
     text-decoration none
 
 .logo

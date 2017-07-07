@@ -26,18 +26,18 @@ html(lang="ru")
     body
         section.sections#section_1: .container
             .row: .col-lg-12.col-md-12.col-xs-12
-                .col-lg-6.col-md-6.col-xs-12: .form-group.text-left: img.img-responsive.logo(src="images/logo.svg")
-                .col-lg-6.col-md-6.col-xs-12: .row.text-right
-                    .form-group: a.text-color-white.contacts(href="tel:73012451122") +7 3012 <b>45 11 22</b>
-                    .form-group
-                        .inline-block.align-middle.icon.icon-margin-xs: img(src="images/tele2.png")
+                .col-lg-6.col-md-6.col-xs-12: .form-group: img.img-responsive.logo(src="images/logo.svg")
+                .col-lg-6.col-md-6.col-xs-12: .row.contacts-right
+                    .form-group.form-group-xs: a.text-color-white.contacts(href="tel:73012451122") +7 3012 <b>45 11 22</b>
+                    .form-group.form-group-xs: span.contacts-wrapper
+                        .inline-block.align-middle#tele-2: img(src="images/tele2.png")
                         .inline-block.align-middle: a.text-color-white.contacts(href="tel:79021686282") +7 9021 <b>68 62 82</b>
-                    .form-group
+                    .form-group#day-and-night
                         .inline-block.align-middle.icon.icon-margin-xs: img(src="images/time_icon.svg")
                         .inline-block.align-middle: strong.text-color-blue.text-size-h3 КРУГЛОСУТОЧНО
             header.row.intro: .col-lg-12.col-md-12.col-xs-12
-                h1.text-color-white.intro-title.text-left Эвакуируем ваш автомобиль
-                p.text-color-white.intro-text.text-left в городе Улан-Удэ и из любого района Бурятии, <br> Иркутской области и Зайбайкальского края
+                h1.text-color-white.intro-title <span>Эвакуируем</span> ваш автомобиль
+                p.text-color-white.intro-text в городе Улан-Удэ и из любого района Бурятии, <br> Иркутской области и Зайбайкальского края
         section.sections#section_2: .container
             .red-circle.text-center
                 span.text-size-h4 от
@@ -58,18 +58,18 @@ html(lang="ru")
             .row
                 .col-lg-6.col-md-6.col-xs-12
                     .row.text-left: .col-lg-12.col-md-12.col-xs-12: .form-group: p.text-size-h3.text-left С 1993 года мы работаем с физическими и юридическими лицами. Нам доверяют множество авторитетных компаний из различных отраслей.
-                    .row
-                        .col-lg-6.col-md-6.col-sm-6.col-xs-6: .form-group
+                    .row.text-left
+                        .col-lg-6.col-md-6.col-sm-12.col-xs-12: .form-group.number-group
                             .inline-block.align-middle.icon-margin-md: span.text-size-h1: b 230
                             .inline-block.align-middle: p охраняемых <br> машиномест
-                        .col-lg-6.col-md-6.col-sm-6.col-xs-6: .form-group
+                        .col-lg-6.col-md-6.col-sm-12.col-xs-12: .form-group.number-group
                             .inline-block.align-middle.icon-margin-md: span.text-size-h1: b 32
                             .inline-block.align-middle: p камеры <br> видеонаблюдения
-                    .row
-                        .col-lg-6.col-md-6.col-sm-6.col-xs-6: .form-group
+                    .row.text-left
+                        .col-lg-6.col-md-6.col-sm-12.col-xs-12: .form-group.number-group
                             .inline-block.align-middle.icon-margin-md: span.text-size-h1: b 2
                             .inline-block.align-middle: p профессиональных <br> охранника в смене
-                        .col-lg-6.col-md-6.col-sm-6.col-xs-6: .form-group
+                        .col-lg-6.col-md-6.col-sm-12.col-xs-12: .form-group.number-group
                             .inline-block.align-middle.icon-margin-md: span.text-size-h1: b 5
                             .inline-block.align-middle: p эвакуаторов <br> разного типа загрузки
                     .row.text-left

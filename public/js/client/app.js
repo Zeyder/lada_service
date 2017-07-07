@@ -11525,7 +11525,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "row"
   }, [_c('button', {
-    staticClass: "btn btn-black",
+    staticClass: "btn btn-black btn-block",
     attrs: {
       "type": "button"
     },
@@ -11539,7 +11539,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._m(5), _c('div', {
     staticClass: "form-group"
   }, [_c('button', {
-    staticClass: "btn btn-black",
+    staticClass: "btn btn-black btn-block",
     attrs: {
       "type": "button"
     },
@@ -11565,7 +11565,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('p', [_vm._v("Введите государственный регистрационный номер")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('button', {
-    staticClass: "btn btn-danger"
+    staticClass: "btn btn-danger btn-block"
   }, [_c('i', {
     staticClass: "icon-send icon-margin-md"
   }), _vm._v("Отправить запрос")])
