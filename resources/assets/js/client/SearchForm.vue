@@ -2,7 +2,7 @@
 form.form(@submit.prevent="submit")
     .form-state-default
         .form-group: h2.text-size-h3.text-color-red Узнайте про ваш автомобиль
-        .form-group: p Если он находится на нашей спец. стоянке, <br> вы можете узнать дату поступления и номер жетона
+        .form-group: p Если он находится на нашей <br> специализированной стоянке, вы можете узнать дату поступления и номер жетона ГИБДД
         .form-group: p Введите государственный регистрационный номер
         .form-group: input.input(type="text", placeholder="Например, н384ху03", v-model="state_number")
         button.btn.btn-danger.btn-block
