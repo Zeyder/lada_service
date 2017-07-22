@@ -2,6 +2,7 @@ import $ from 'jquery';
 window.$ = $;
 window.jQuery = $;
 window.moment = require('moment');
+require("babel-polyfill");
 require('../../vendor/datetimepicker/jquery.datetimepicker.full.js');
 require('../../vendor/datetimepicker/jquery.datetimepicker.min.css');
 require('../../vendor/stickytableheader');
