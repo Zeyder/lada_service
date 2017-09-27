@@ -113,6 +113,9 @@ html(lang="ru")
                 .col-lg-5.col-md-5.col-xs-12
                     .form-group: h3.text-size-h5.text-color-black.text-left.weight-light.opacity-5 Крупнейшие страховые группы страны
                     .form-group
+                        .inline-block.align-middle.icon-margin-lg: img(src="images/sber_circle.png")
+                        .inline-block.align-middle.icon-margin-lg: span.text-size-h4.weight-normal ПАО Сбербанк России
+                    .form-group
                         .inline-block.align-middle.icon-margin-lg: img(src="images/rgs_circle.png")
                         .inline-block.align-middle.icon-margin-lg: span.text-size-h4.weight-normal РОСГОССТРАХ
                     .form-group
